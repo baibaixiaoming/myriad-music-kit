@@ -1,0 +1,40 @@
+# 轻量音乐服务器菜单栏应用（XcodeGen）。生成工程：cd App && xcodegen；编译安装：scripts/编译安装.sh
+name: LightMusicServer
+options:
+  deploymentTarget:
+    macOS: "14.0"
+packages:
+  LightMusicServer:
+    path: ..
+targets:
+  LightMusicServerApp:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+      # 示例音乐整个文件夹原样放进应用（“放入示例音乐”从这里拷）
+      - path: ../Resources/示例音乐
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: LightMusicServer
+        product: LightServerCore
+    settings:
+      base:
+        SWIFT_VERSION: "6.0"
+        PRODUCT_NAME: 轻量音乐服务器
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.baibaixiaoming.LightMusicServer
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: Config/Info.plist            # 与自动生成的条目合并：本地网络权限说明
+        INFOPLIST_KEY_LSUIElement: YES               # 只在菜单栏显示，不出现在程序坞
+        INFOPLIST_KEY_CFBundleDisplayName: 轻量音乐服务器
+        INFOPLIST_KEY_NSPrincipalClass: NSApplication
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.music
+        INFOPLIST_KEY_NSHumanReadableCopyright: "MIT 许可。示例音乐为本项目原创，以 CC0 发布。"
+        ENABLE_HARDENED_RUNTIME: YES                 # 为以后 Developer ID 签名、公证做准备
+        ENABLE_APP_SANDBOX: NO
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "-"                      # 本机自签名；正式发布时改成 Developer ID
+        DEVELOPMENT_TEAM: ""

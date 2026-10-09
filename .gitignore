@@ -1,0 +1,28 @@
+# SwiftPM 与 Xcode 编译产物
+.build/
+.swiftpm/
+build/
+DerivedData/
+*.xcodeproj/
+xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# 菜单栏应用工程由 XcodeGen 生成，不入库
+LightServer/App/*.xcodeproj/
+
+# 系统与编辑器
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# 本地配置与凭证，绝不入库
+Config/Local.xcconfig
+*.xcconfig.local
+*.secret
+*.cookie
+*.p12
+*.pem
+*.key
+*.mobileprovision
+.env
